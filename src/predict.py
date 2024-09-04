@@ -4,17 +4,24 @@ import os
 from typing import List
 from pathlib import Path
 
-
 MODEL_ID = "black-forest-labs/FLUX.1-schnell"
-MODEL_CACHE_DIR = "/workspace/diffusers-cache"
+MODEL_CACHE_DIR = "/workspace/diffusers-cache/flux-schnell"
 
 class Predictor:
     def setup(self):
         print("Loading pipeline...")
+
+        model_fetched = True
+        model_cache_path = Path(MODEL_CACHE_DIR)
+        
+        if not model_cache_path.exists():
+            model_cache_path.mkdir(parents=True, exist_ok=True)
+            model_fetched = False
+    
         self.pipe = DiffusionPipeline.from_pretrained(
             MODEL_ID,
             cache_dir=Path(MODEL_CACHE_DIR),
-            local_files_only=True,
+            local_files_only=model_fetched,
             torch_dtype=torch.bfloat16
         ).to('cuda')
 

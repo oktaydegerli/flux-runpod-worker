@@ -1,6 +1,7 @@
 import torch
 from diffusers import DiffusionPipeline
 import os
+import shutil
 from typing import List
 from pathlib import Path
 

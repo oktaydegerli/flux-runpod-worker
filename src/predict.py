@@ -45,13 +45,8 @@ class Predictor:
             height=height,
             guidance_scale=guidance_scale,
             generator=generator,
+            output_type="pil"
             num_inference_steps=num_inference_steps,
         )
 
-        output_paths = []
-        for i, sample in enumerate(output.images):
-            output_path = f"/tmp/out-{i}.png"
-            sample.save(output_path)
-            output_paths.append(output_path)
-
-        return output_paths
+        return output.images

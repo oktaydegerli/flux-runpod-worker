@@ -56,7 +56,7 @@ class Predictor:
 
         for i, img in enumerate(output.images):
             buffered = BytesIO()
-            img.save(buffered, format="JPEG")
+            img.save(buffered, format="PNG")
             img_b64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
             outputs.append(img_b64)
 

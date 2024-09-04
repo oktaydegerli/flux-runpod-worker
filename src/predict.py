@@ -59,4 +59,4 @@ class Predictor:
             im_bytes = im_file.getvalue()
             outputs.append(base64.b64encode(im_bytes))
 
-        return output_paths
+        return outputs

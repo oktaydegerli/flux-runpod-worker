@@ -48,15 +48,16 @@ class Predictor:
             height=height,
             guidance_scale=guidance_scale,
             generator=generator,
+            output_type="pil",
             num_inference_steps=num_inference_steps,
         )
 
         outputs = []
 
         for i, img in enumerate(output.images):
-            im_file = f"/tmp/out-{i}.png"
-            img.save(im_file)
-            im_bytes = im_file.getvalue()
-            outputs.append(base64.b64encode(im_bytes))
+            buffered = BytesIO()
+            img.save(buffered, format="JPEG")
+            img_b64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
+            outputs.append(img_b64)
 
         return outputs

@@ -37,7 +37,7 @@ def run(job):
     if validated_input['seed'] is None:
         validated_input['seed'] = int.from_bytes(os.urandom(2), "big")
 
-    img_pils = MODEL.predict(
+    outputs = MODEL.predict(
         prompt=validated_input["prompt"],
         width=validated_input['width'],
         height=validated_input['height'],
@@ -49,9 +49,9 @@ def run(job):
 
     job_output = []
 
-    for index, img_pil in enumerate(img_pils):
+    for index, output in enumerate(outputs):
         job_output.append({
-            "image": img_pil,
+            "image": output,
             "seed": validated_input['seed'] + index
         })
 

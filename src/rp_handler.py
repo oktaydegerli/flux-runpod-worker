@@ -37,7 +37,7 @@ def run(job):
     if validated_input['seed'] is None:
         validated_input['seed'] = int.from_bytes(os.urandom(2), "big")
 
-    img_paths = MODEL.predict(
+    img_pils = MODEL.predict(
         prompt=validated_input["prompt"],
         width=validated_input['width'],
         height=validated_input['height'],
@@ -49,11 +49,9 @@ def run(job):
 
     job_output = []
 
-    for index, img_path in enumerate(img_paths):
-        image_url = rp_upload.upload_image(job['id'], img_path, index)
-
+    for index, img_pil in enumerate(img_pils):
         job_output.append({
-            "image": image_url,
+            "image": img_pil,
             "seed": validated_input['seed'] + index
         })
 

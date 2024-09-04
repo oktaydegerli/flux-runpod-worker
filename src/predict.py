@@ -5,7 +5,7 @@ import shutil
 from typing import List
 from pathlib import Path
 
-MODEL_ID = "black-forest-labs/FLUX.1-schnell"
+MODEL_ID = "black-forest-labs/FLUX.1-dev"
 MODEL_CACHE_DIR = "/runpod-volume/diffusers-cache/flux-dev"
 
 class Predictor:

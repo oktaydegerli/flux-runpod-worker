@@ -45,7 +45,7 @@ class Predictor:
             height=height,
             guidance_scale=guidance_scale,
             generator=generator,
-            output_type="pil"
+            output_type="pil",
             num_inference_steps=num_inference_steps,
         )
 

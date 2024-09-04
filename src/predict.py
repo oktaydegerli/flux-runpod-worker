@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 MODEL_ID = "black-forest-labs/FLUX.1-schnell"
-MODEL_CACHE_DIR = "diffusers-cache"
+MODEL_CACHE_DIR = "/workspace/diffusers-cache"
 
 class Predictor:
     def setup(self):
